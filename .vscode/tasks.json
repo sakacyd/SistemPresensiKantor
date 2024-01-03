@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build JAR",
+            "type": "shell",
+            "command": "javac -d target/classes src/main/java/*.java && jar cfm target/SistemPresensiKantor.jar src/META-INF/MANIFEST.MF -C target/classes/ .",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
