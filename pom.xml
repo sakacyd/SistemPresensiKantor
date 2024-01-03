@@ -4,8 +4,15 @@
     <groupId>com.main</groupId>
     <artifactId>tubes</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>SistemPresensiKantor</name>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>11</maven.compiler.release>
+        <javafx.version>21</javafx.version>
+        <javafx.maven.plugin.version>0.0.6</javafx.maven.plugin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
@@ -20,13 +27,31 @@
             <artifactId>javafx-fxml</artifactId>
             <version>21</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>21.0.1</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>21.0.1</version>
+            <classifier>linux</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>21.0.1</version>
+            <classifier>mac</classifier>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <release>11</release>
                 </configuration>
@@ -35,16 +60,9 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
-                <executions>
-                    <execution>
-                        <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
-                        <id>default-cli</id>
-                        <configuration>
-                            <mainClass>com.main.SistemPresensiKantor</mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <mainClass>com.main.SistemPresensiKantor</mainClass>
+                </configuration>
             </plugin>
             <!-- Maven Shade Plugin -->
             <plugin>
@@ -53,15 +71,16 @@
                 <version>3.2.4</version>
                 <configuration>
                     <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedClassifierName>project-classifier</shadedClassifierName>
+                    <outputFile>shade\SistemPresensiKantor.jar</outputFile>
                     <transformers>
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <manifestEntries>
-                                <Main-Class>com.main.SistemPresensiKantor</Main-Class>
+                                <Main-Class>com.main.Launcher</Main-Class>
                                 <!-- Other manifest entries if needed -->
                             </manifestEntries>
                         </transformer>
                     </transformers>
-                    <finalName>SistemPresensiKantor</finalName>
                 </configuration>
                 <executions>
                     <execution>

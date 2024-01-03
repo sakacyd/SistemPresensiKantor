@@ -4,3 +4,4 @@ module-info.class
 com/main/SistemPresensiKantor.class
 com/main/DetailSceneController.class
 com/main/Employee.class
+com/main/Launcher.class
